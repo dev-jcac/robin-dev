@@ -1,9 +1,10 @@
+#include "config_sensors.h"
 class Ultrasonic {
     int TrigPin;
     int EchoPin;
     int CurrentDistance;
   public:
-    void ultrasonic (int trigpin, int echopin) { //if does not work, try removing void
+    Ultrasonic(int trigpin, int echopin) { //if does not work, try removing void
       TrigPin = trigpin;
       EchoPin = echopin;
       pinMode(TrigPin, OUTPUT);
@@ -20,17 +21,19 @@ class Ultrasonic {
       return CurrentDistance; // to be replaced with "diameter"
     }
 };
-/*USAGE:
-  Ultrasonic ultrasonic1(ultrasonic1_trig_pin,ultrasonic1_echo_pin); -> (trigger pin, echo pin)
-  Ultrasonic ultrasonic2(ultrasonic2_trig_pin,ultrasonic2_echo_pin); ->(trigger pin, echo pin)
 
-  and.... ultrasonic1.Measure(); etc  -> returns diameter ideally.
+Ultrasonic ultrasonic1(ultrasonic1_trig_pin , ultrasonic1_echo_pin); //-> (trigger pin, echo pin)
+Ultrasonic ultrasonic2(ultrasonic2_trig_pin , ultrasonic2_echo_pin); //->(trigger pin, echo pin)
+/*USAGE:
+
+
+  and.... ultrasonic1.Measure(); //etc //returns diameter
 */
 
-class Capactive {
+class Capacitive {
     int SensorPin;
   public:
-    void capactive (int sensorPin) { //if does not work, try removing void
+    Capacitive (int sensorPin) { //if does not work, try removing void
       SensorPin = sensorPin;
       pinMode(sensorPin, INPUT);
     }
@@ -42,17 +45,18 @@ class Capactive {
       return 0;
     }
 };
+
 /*USAGE:
-  Capacitive capacitive1(capacitive1_sensor_pin); (analog pin for capacitive sensor
-  Capacitive capacitive1(capacitive2_sensor_pin); (analog pin for capacitive sensor
-  
-  capacitive1.Measure(); -> returns 1 or 0
+  Capacitive capacitive1(capacitive1_sensor_pin); //(analog pin for capacitive sensor
+  Capacitive capacitive2(capacitive2_sensor_pin); //(analog pin for capacitive sensor
+
+  capacitive1.Measure(); //returns 1 or 0
 */
 
 class Inductive {
     int SensorPin;
   public:
-    void inductive (int sensorPin) { //if does not work, try removing void
+    Inductive (int sensorPin) { //if does not work, try removing void
       SensorPin = sensorPin;
       pinMode(sensorPin, INPUT);
     }
@@ -65,14 +69,14 @@ class Inductive {
     }
 };
 /*USAGE:
-  Inductive inductive1(inductive1_sensor_pin); -> (analog pin for inductive sensor
-  inductive1.Measure(); -> returns 1 or 0
+  Inductive inductive1(inductive1_sensor_pin); //(analog pin for inductive sensor)
+  inductive1.Measure(); //returns 1 or 0
 */
 
 class Ir {
     int SensorPin;
   public:
-    void ir(int sensorPin) {
+    Ir(int sensorPin) {
       SensorPin = sensorPin;
       pinMode(SensorPin, INPUT);
     }
@@ -85,6 +89,26 @@ class Ir {
     }
 };
 /*USAGE:
-   Ir ir (ir1_sensor_pin); -> (digital pin for IR sensor)
-   Ir.Confirm() ->returns 1 or 0
+   Ir ir (ir1_sensor_pin); //(digital pin for IR sensor)
+   ir.Confirm() //returns 1 or 0
+*/
+
+class Door{
+    int SensorPin;
+  public:
+    Door(int sensorPin) {
+      SensorPin = sensorPin;
+      pinMode(SensorPin, INPUT);
+    }
+    bool Confirm() {
+      int closeDoor = digitalRead(SensorPin);
+      if (closeDoor == 1) {
+        return 1;
+      }
+      return 0;
+    }
+};
+/*USAGE:
+   Door door(door_sensor_pin); //(digital pin for hall effect sensor)
+   door.Confirm() //returns 1 or 0
 */

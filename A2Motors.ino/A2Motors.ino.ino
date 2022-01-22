@@ -1,13 +1,11 @@
 #include "config_motors.h"
 #include "classes.h"
-#include <Servo.h>
-
-Servo gateServo;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   gateServo.attach(gateServoPin);
+  closeGate();
 }
 
 void loop() {

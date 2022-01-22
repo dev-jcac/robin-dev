@@ -15,3 +15,5 @@ int inductive2_sensor_pin = A3;
 
 int ir1_sensor_pin = 8;
 int ir2_sensor_pin = 9;
+
+int door_sensor_pin = 10;

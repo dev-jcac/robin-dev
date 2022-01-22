@@ -1,5 +1,4 @@
 #include "classes.h"
-#include "config_sensors.h"
 
 void setup() {
   // put your setup code here, to run once:
