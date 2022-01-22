@@ -2,7 +2,6 @@ class Ultrasonic {
     int TrigPin;
     int EchoPin;
     int CurrentDistance;
-
   public:
     void ultrasonic (int trigpin, int echopin) { //if does not work, try removing void
       TrigPin = trigpin;
@@ -27,7 +26,6 @@ class Ultrasonic {
 
   and.... ultrasonic1.Measure(); etc  -> returns diameter ideally.
 */
-
 
 class Capactive {
     int SensorPin;
@@ -69,7 +67,6 @@ class Inductive {
 /*USAGE:
   Inductive inductive1(inductive1_sensor_pin); -> (analog pin for inductive sensor
   inductive1.Measure(); -> returns 1 or 0
-
 */
 
 class Ir {
@@ -89,5 +86,5 @@ class Ir {
 };
 /*USAGE:
    Ir ir (ir1_sensor_pin); -> (digital pin for IR sensor)
-   Ir.Confirm
+   Ir.Confirm() ->returns 1 or 0
 */
