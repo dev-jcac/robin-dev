@@ -17,6 +17,7 @@ void loop() {
         break;
       case 'b':
         //do something
+        capacitive1.Measure();
         Serial.println("pressed B");
         break;
       case 'c':

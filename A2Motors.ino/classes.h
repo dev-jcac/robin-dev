@@ -24,12 +24,14 @@ class Conveyor {
     void Forward() {
       digitalWrite(Positive, HIGH);
       digitalWrite(Negative, LOW);
-      delay(1000);
     }
     void Reverse() {
       digitalWrite(Positive, LOW);
       digitalWrite(Negative, HIGH);
-      delay(1000);
+    }
+    void Stop() {
+      digitalWrite(Positive, LOW);
+      digitalWrite(Negative, LOW);
     }
 };
 /*USAGE:
@@ -39,3 +41,23 @@ class Conveyor {
   convLeft.Forward();
   convRight.Reverse(); etc
 */
+
+class Z_axis {
+    int Dir_pin;
+    int Step_pin;
+  public:
+    z_axis(int dir_pin, int step_pin) {
+      Dir_pin = dir_pin;
+      Step_pin = step_pin;
+      pinMode(Dir_pin, OUTPUT);
+      pinMode(Step_pin, OUTPUT);
+    }
+    void Up() {
+      digitalWrite(Dir_pin, HIGH);
+      digitalWrite(Step_pin, HIGH);
+    }
+    void Down() {
+      digitalWrite(Dir_pin, LOW);
+      digitalWrite(Step_pin, HIGH);
+    }
+};

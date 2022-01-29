@@ -22,11 +22,10 @@ class Ultrasonic {
     }
 };
 
+
+/*USAGE:
 Ultrasonic ultrasonic1(ultrasonic1_trig_pin , ultrasonic1_echo_pin); //-> (trigger pin, echo pin)
 Ultrasonic ultrasonic2(ultrasonic2_trig_pin , ultrasonic2_echo_pin); //->(trigger pin, echo pin)
-/*USAGE:
-
-
   and.... ultrasonic1.Measure(); //etc //returns diameter
 */
 
