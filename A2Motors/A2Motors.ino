@@ -5,6 +5,7 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   gateServo.attach(gateServoPin);
+  sorterServo.attach(sorterServoPin);
   closeGate();
 }
 

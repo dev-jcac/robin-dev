@@ -1,5 +1,6 @@
 #include <Servo.h>
 Servo gateServo;
+Servo sorterServo;
 
 void openGate() {
   gateServo.write(90);
@@ -10,6 +11,16 @@ void closeGate() {
   gateServo.write(0);
   delay(10);
 }
+
+void toPetBin(){
+  sorterServo.write(90);
+  delay(10);
+  }
+
+void toCanBin(){
+  sorterServo.write(0);
+  delay(10);
+  ope}
 
 class Conveyor {
     int Positive;
@@ -38,8 +49,8 @@ class Conveyor {
   Conveyor convLeft(conveyorMotor1Positive, conveyorMotor1Negative );
   Conveyor convRight(conveyorMotor2Positive,conveyorMotor2Negative);
 
-  convLeft.Forward();
-  convRight.Reverse(); etc
+  convleft.Forward();
+  convleft.Reverse(); etc
 */
 
 class Z_axis {

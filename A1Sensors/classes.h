@@ -36,7 +36,7 @@ class Capacitive {
       SensorPin = sensorPin;
       pinMode(sensorPin, INPUT);
     }
-    bool Measure() {
+    bool Classify() {
       int capacitance = analogRead(SensorPin);
       if (capacitance >= 150) { //change values and logic soon
         return 1;
@@ -49,7 +49,7 @@ class Capacitive {
   Capacitive capacitive1(capacitive1_sensor_pin); //(analog pin for capacitive sensor
   Capacitive capacitive2(capacitive2_sensor_pin); //(analog pin for capacitive sensor
 
-  capacitive1.Measure(); //returns 1 or 0
+  capacitive1.Classify(); //returns 1 or 0
 */
 
 class Inductive {
@@ -59,7 +59,7 @@ class Inductive {
       SensorPin = sensorPin;
       pinMode(sensorPin, INPUT);
     }
-    bool Measure() {
+    bool Classify() {
       int inductance = analogRead(SensorPin);
       if (inductance >= 150) { //change values and logic soon
         return 1;
@@ -69,7 +69,7 @@ class Inductive {
 };
 /*USAGE:
   Inductive inductive1(inductive1_sensor_pin); //(analog pin for inductive sensor)
-  inductive1.Measure(); //returns 1 or 0
+  inductive1.Classify(); //returns 1 or 0
 */
 
 class Ir {

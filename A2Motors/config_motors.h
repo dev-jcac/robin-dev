@@ -6,3 +6,4 @@ int conveyorMotor2Positive = 4;
 int conveyorMotor2Negative = 5;
 
 int gateServoPin = 6;
+int gateServoPin = 7;

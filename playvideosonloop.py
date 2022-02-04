@@ -1,5 +1,4 @@
 import cv2
-import numpy as np
 import os
 
 path = "/home/jc/robin/video_ads"
