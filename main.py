@@ -14,7 +14,7 @@ class Connection:
             return False
 
     def remoteServer():
-        url = "https://www.twitter.com"
+        url = "https://www.twitter.com" #replace
         timeout = 5
         try:
             request = requests.get(url, timeout=timeout)
@@ -22,7 +22,7 @@ class Connection:
         except (requests.ConnectionError, requests.Timeout) as exception:
             return False
     def advertisementServer():
-        url = "https://www.facebook.com"
+        url = "https://www.facebook.com"#replace
         timeout = 5
         try:
             request = requests.get(url, timeout=timeout)
@@ -46,7 +46,6 @@ class Check:
             return True
         except:
             return False
-
 
 class Identify:
     def ttyUSB0():

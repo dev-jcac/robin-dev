@@ -39,12 +39,14 @@ class Capacitive {
     bool Classify() {
       int capacitance = analogRead(SensorPin);
       if (capacitance >= 150) { //change values and logic soon
+        Serial.println("1");
         return 1;
       }
+      Serial.println("0");
       return 0;
     }
 };
-
+Capacitive capacitive1(capacitive1_sensor_pin);
 /*USAGE:
   Capacitive capacitive1(capacitive1_sensor_pin); //(analog pin for capacitive sensor
   Capacitive capacitive2(capacitive2_sensor_pin); //(analog pin for capacitive sensor
