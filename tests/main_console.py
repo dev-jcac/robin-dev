@@ -1,7 +1,4 @@
 import mysql.connector
-import requests
-import serial
-import time
 from db_config import *
 import string    
 import random 
@@ -19,7 +16,7 @@ while(True):
     points = 0
     tap = input('Touch anywhere to start... ')
     trans_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))
-    print(trans_id)  
+    print(trans_id)
     tally_string = "SELECT recyclable_type FROM user_records WHERE transaction_id = '"+str(trans_id)+"' AND (recyclable_type = 'PET' OR recyclable_type = 'CAN')"
     mycursor.execute(tally_string)
     tally = mycursor.fetchall()
@@ -32,6 +29,7 @@ while(True):
     elif mat_type == 'CAN':
         points = 0.2
     elif mat_type == 'DONE':
+        points = 0
         print("=============================================")
         print("Thank you for using ROBIN!")
         print("=============================================")
@@ -55,6 +53,7 @@ while(True):
         elif mat_type == 'CAN':
             points = 0.2
         elif mat_type == 'DONE':
+            points = 0
             print("=============================================")
             print("Thank you for using ROBIN!")
             print("Total recyclables inserted:" +str(len(tally)))

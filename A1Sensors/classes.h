@@ -13,16 +13,25 @@ class Ultrasonic {
     }
 
     int Measure() {
+        // Clears the trigPin condition
+      digitalWrite(TrigPin, LOW);
+      delayMicroseconds(2);
+      // Sets the trigPin HIGH (ACTIVE) for 10 microseconds
       digitalWrite(TrigPin, HIGH);
       delayMicroseconds(10);
       digitalWrite(TrigPin, LOW);
-      int Time = pulseIn(EchoPin, HIGH, 5000);
-      CurrentDistance = Time * 0.1715; //to have additional logic to compute the diameter of the item
-      return CurrentDistance; // to be replaced with "diameter"
+      // Reads the echoPin, returns the sound wave travel time in microseconds
+      long duration = pulseIn(EchoPin, HIGH);
+      // Calculating the distance
+      int distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
+      // Displays the distance on the Serial Monitor
+//      Serial.print("Distance: ");
+      Serial.println(distance);
+//      Serial.println(" cm");
     }
 };
 
-
+Ultrasonic ultrasonic1(ultrasonic1_trig_pin , ultrasonic1_echo_pin);
 /*USAGE:
 Ultrasonic ultrasonic1(ultrasonic1_trig_pin , ultrasonic1_echo_pin); //-> (trigger pin, echo pin)
 Ultrasonic ultrasonic2(ultrasonic2_trig_pin , ultrasonic2_echo_pin); //->(trigger pin, echo pin)

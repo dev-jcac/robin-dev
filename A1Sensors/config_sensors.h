@@ -1,7 +1,7 @@
 String deviceID = "00-sensors";
 
-int ultrasonic1_trig_pin = 2;
-int ultrasonic1_echo_pin = 3;
+int ultrasonic1_trig_pin = 3;
+int ultrasonic1_echo_pin = 2;
 int ultrasonic2_trig_pin = 4;
 int ultrasonic2_echo_pin = 5;
 int ultrasonic3_trig_pin = 6;

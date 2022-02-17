@@ -28,6 +28,14 @@ void loop() {
         //do something
         Serial.println("pressed D");
         break;
+      case 'x':
+        //do something
+        ultrasonic1.Measure();
+        break;
+      case 'z':
+        //do something
+        Serial.println("PET");
+        break;
       default:
         //do nothing
         break;

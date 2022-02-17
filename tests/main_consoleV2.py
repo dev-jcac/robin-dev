@@ -5,7 +5,7 @@ import time
 from db_config import *
 import string    
 import random 
-S = 10
+S = 10 #for randomizing transaction_id
 mydb = mysql.connector.connect(
   host=localdb_host,
   user=localdb_user,
@@ -92,7 +92,6 @@ class Identify:
         except:
             ttyUSB1_status = False
             return "No device connected"
-
 
 print("internet connection: " + str(Connection.internet()))
 print("connection to remote server: " +str(Connection.remoteServer()))
