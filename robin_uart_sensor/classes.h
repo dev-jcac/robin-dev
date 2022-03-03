@@ -13,30 +13,43 @@ class Ultrasonic {
       digitalWrite(TrigPin, LOW);
     }
 
-    int Measure() {
-      
-        // Clears the trigPin condition
+    int getDiameter() {
       digitalWrite(TrigPin, LOW);
       delayMicroseconds(2);
-      // Sets the trigPin HIGH (ACTIVE) for 10 microseconds
       digitalWrite(TrigPin, HIGH);
       delayMicroseconds(10);
       digitalWrite(TrigPin, LOW);
-      // Reads the echoPin, returns the sound wave travel time in microseconds
       long duration = pulseIn(EchoPin, HIGH);
-      // Calculating the distance
       int distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
       // Displays the distance on the Serial Monitor
-//      Serial.print("Distance: ");
+      // Serial.print("Distance: ");
+      // Serial.println(" cm");
       return chute_diameter - distance;
-//      Serial.println(" cm");
+    }
+    bool isDetected() {
+      digitalWrite(TrigPin, LOW);
+      delayMicroseconds(2);
+      digitalWrite(TrigPin, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(TrigPin, LOW);
+      long duration = pulseIn(EchoPin, HIGH);
+      int distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
+      // Displays the distance on the Serial Monitor
+      // Serial.print("Distance: ");
+      // Serial.println(" cm");
+      if (distance < 10) {
+        return true;
+      }
+      return false;
     }
 };
 
 Ultrasonic ultrasonic1(ultrasonic1_trig_pin , ultrasonic1_echo_pin);
+Ultrasonic petbin(ultrasonic3_trig_pin , ultrasonic3_echo_pin);
+Ultrasonic canbin(ultrasonic4_trig_pin , ultrasonic4_echo_pin);
 /*USAGE:
-Ultrasonic ultrasonic1(ultrasonic1_trig_pin , ultrasonic1_echo_pin); //-> (trigger pin, echo pin)
-Ultrasonic ultrasonic2(ultrasonic2_trig_pin , ultrasonic2_echo_pin); //->(trigger pin, echo pin)
+  Ultrasonic ultrasonic1(ultrasonic1_trig_pin , ultrasonic1_echo_pin); //-> (trigger pin, echo pin)
+  Ultrasonic ultrasonic2(ultrasonic2_trig_pin , ultrasonic2_echo_pin); //->(trigger pin, echo pin)
   and.... ultrasonic1.Measure(); //etc //returns diameter
 */
 
@@ -47,17 +60,18 @@ class Capacitive {
       SensorPin = sensorPin;
       pinMode(sensorPin, INPUT);
     }
-    bool Classify() {
+    String Classify() {
       int capacitance = analogRead(SensorPin);
       if (capacitance >= 150) { //change values and logic soon
-//        Serial.println("1");
+        //        Serial.println("1");
         return "PET";
       }
-//      Serial.println("0");
+      //      Serial.println("0");
       return "CAN";
     }
 };
 Capacitive capacitive1(capacitive1_sensor_pin);
+Capacitive capacitive2(capacitive2_sensor_pin);
 /*USAGE:
   Capacitive capacitive1(capacitive1_sensor_pin); //(analog pin for capacitive sensor
   Capacitive capacitive2(capacitive2_sensor_pin); //(analog pin for capacitive sensor
@@ -72,7 +86,7 @@ class Inductive {
       SensorPin = sensorPin;
       pinMode(sensorPin, INPUT);
     }
-    bool Classify() {
+    String Classify() {
       int inductance = analogRead(SensorPin);
       if (inductance >= 150) { //change values and logic soon
         return "PET";
@@ -80,6 +94,8 @@ class Inductive {
       return "CAN";
     }
 };
+Inductive inductive1(inductive1_sensor_pin); //(analog pin for inductive sensor)
+Inductive inductive2(inductive2_sensor_pin); //(analog pin for inductive sensor)
 /*USAGE:
   Inductive inductive1(inductive1_sensor_pin); //(analog pin for inductive sensor)
   inductive1.Classify(); //returns 1 or 0
@@ -105,21 +121,22 @@ class Ir {
    ir.Confirm() //returns 1 or 0
 */
 
-class Door{
+class Hall {
     int SensorPin;
   public:
-    Door(int sensorPin) {
+    Hall(int sensorPin) {
       SensorPin = sensorPin;
       pinMode(SensorPin, INPUT);
     }
     bool Confirm() {
-      int closeDoor = digitalRead(SensorPin);
-      if (closeDoor == 1) {
+      int checkMagnet = digitalRead(SensorPin);
+      if (checkMagnet == 1) {
         return 1;
       }
       return 0;
     }
 };
+Hall doorSensor(door_sensor_pin);
 /*USAGE:
    Door door(door_sensor_pin); //(digital pin for hall effect sensor)
    door.Confirm() //returns 1 or 0
